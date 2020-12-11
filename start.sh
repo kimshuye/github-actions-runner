@@ -8,14 +8,25 @@ REG_TOKEN=$(curl -sX POST -H "Authorization: token ${ACCESS_TOKEN}" https://api.
 
 echo "${env}"
 
-./config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
+./config.sh \
+    --url https://github.com/${ORGANIZATION}/shopping-cart-1 \
+    --token ${REG_TOKEN} \
+    --work ${RUNNER_WORKDIR} \
+    --unattended \
+    --replace
 
 cleanup() {
     echo "Removing runner..."
-    ./actions-runconfig.sh remove --unattended --token ${REG_TOKEN}
+    ./actions-runconfig.sh remove --unattended --token "${REG_TOKEN}"
 }
 
+trap 'remove; exit 130' INT
+trap 'remove; exit 143' TERM
 
-./svc.sh install
-./svc.sh start & wait $!
+./run.sh "$*" &
+
+wait $!
+
+# ./svc.sh install
+# ./svc.sh start & wait $!
 
