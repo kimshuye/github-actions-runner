@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  runner:
+    build: .
+    environment:
+      - ORGANIZATION=${ORGANIZATION}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      # - REG_TOKEN=${REG_TOKEN}

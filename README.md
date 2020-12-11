@@ -71,11 +71,12 @@ docker login --username tokdev
 ## Env
 
 ```
-export IMG_NAME=tokdev/runner
+export IMG_NAME=tokdev/runner:latest
 export CONTAINER_NAME=runner
 
 export ORGANIZATION=kimshuye
 export ACCESS_TOKEN=xxx
+export REG_TOKEN=xxx
 ```
 
 
@@ -88,6 +89,10 @@ docker build --tag ${IMG_NAME} .
 
 ## Test Run runner
 
-```
-docker run --name ${CONTAINER_NAME} --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock --detach --env ORGANIZATION=${ORGANIZATION} --env ACCESS_TOKEN=${ACCESS_TOKEN} ${IMG_NAME}
+```sh
+docker run  \
+    --env ORGANIZATION=${ORGANIZATION} \
+    --env ACCESS_TOKEN=${ACCESS_TOKEN} \
+    --name ${CONTAINER_NAME}  ${IMG_NAME} \
+    -v /var/run/docker.sock:/var/run/docker.sock 
 ```

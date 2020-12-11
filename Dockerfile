@@ -4,6 +4,9 @@ FROM ubuntu:18.04
 # set the github runner version
 ARG RUNNER_VERSION="2.274.2"
 
+ENV ORGANIZATION=$ORGANIZATION
+ENV ACCESS_TOKEN=$ACCESS_TOKEN
+
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
