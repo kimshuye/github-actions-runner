@@ -39,6 +39,6 @@ RUN chmod +x ${WORKDIR}/actions-runner/start.sh
 # set the user to "docker" so all subsequent commands are run as the docker user
 USER docker
 
-# # set the entrypoint to the start.sh script
-# ENTRYPOINT ["./actions-runner/start.sh"]
+# set the entrypoint to the start.sh script
+ENTRYPOINT ["./actions-runner/start.sh"]
 
