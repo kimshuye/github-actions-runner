@@ -37,6 +37,6 @@ RUN chmod +x start.sh
 # set the user to "docker" so all subsequent commands are run as the docker user
 USER docker
 
-# set the entrypoint to the start.sh script
-ENTRYPOINT ["./start.sh"]
+# # set the entrypoint to the start.sh script
+# ENTRYPOINT ["./start.sh"]
 
