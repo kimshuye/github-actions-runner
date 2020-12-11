@@ -8,15 +8,15 @@ REG_TOKEN=$REG_TOKEN
 
 echo "${env}"
 
-./config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
+./actions-runner/config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
 
 cleanup() {
     echo "Removing runner..."
-    ./config.sh remove --unattended --token ${REG_TOKEN}
+    ./actions-runconfig.sh remove --unattended --token ${REG_TOKEN}
 }
 
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
 
-./run.sh & wait $!
+./actions-runner/run.sh & wait $!
 
