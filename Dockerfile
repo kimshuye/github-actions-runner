@@ -39,15 +39,15 @@ WORKDIR /home/docker/actions-runner
 # add additional packages as necessary
 RUN sudo apt-get install -y curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev
 
-# cd into the user directory, download and unzip the github actions runner
-RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2.274.2/actions-runner-linux-x64-2.274.2.tar.gz \
-    && tar xzf ./actions-runner-linux-x64-2.274.2.tar.gz
-
 # VOLUME /var/run/docker.sock
 
 # install some additional dependencies
 # RUN sudo ./bin/installdependencies.sh
 RUN sudo chown -R docker ~docker && sudo ./bin/installdependencies.sh
+
+# cd into the user directory, download and unzip the github actions runner
+RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2.274.2/actions-runner-linux-x64-2.274.2.tar.gz \
+    && tar xzf ./actions-runner-linux-x64-2.274.2.tar.gz
 
 # copy over the start.sh script
 COPY start.sh ./start.sh
