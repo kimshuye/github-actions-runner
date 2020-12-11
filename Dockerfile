@@ -18,8 +18,12 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 
 VOLUME /var/run/docker.sock
 
+RUN cat /home/docker/actions-runner/bin/installdependencies.sh
+
 # install some additional dependencies
-RUN chown -R docker ~/docker && /home/docker/actions-runner/bin/installdependencies.sh
+RUN /home/docker/actions-runner/bin/installdependencies.sh
+
+RUN chown -R docker ~docker
 
 # copy over the start.sh script
 COPY start.sh start.sh

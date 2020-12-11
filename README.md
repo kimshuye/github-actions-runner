@@ -53,6 +53,21 @@ sudo chmod +x install-etc-2.sh
 ./install-etc-2.sh
 ```
 
+## Add Start bash
+
+```
+sudo chmod +x start.sh
+```
+
+
+## Login docker hub registry
+
+
+```
+docker login --username tokdev 
+```
+
+
 ## Env
 
 ```
@@ -71,7 +86,7 @@ export ACCESS_TOKEN=xxx
 docker build --tag ${IMG_NAME} .
 ```
 
-## 
+## Test Run runner
 
 ```
 docker run --name ${CONTAINER_NAME} --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock --detach --env ORGANIZATION=${ORGANIZATION} --env ACCESS_TOKEN=${ACCESS_TOKEN} ${IMG_NAME}
