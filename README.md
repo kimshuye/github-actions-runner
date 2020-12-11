@@ -85,7 +85,7 @@ export REG_TOKEN=xxx
 
 
 ```
-docker build --tag ${IMG_NAME}:${TAG_IMG} --build-arg ORGANIZATION=$ORGANIZATION --build-arg ACCESS_TOKEN=$ACCESS_TOKEN  . 
+docker build --tag ${IMG_NAME}:${TAG_IMG} --build-arg ORGANIZATION=${ORGANIZATION} --build-arg ACCESS_TOKEN=${ACCESS_TOKEN}  . 
 ```
 
 ## Test Run runner
@@ -94,7 +94,7 @@ docker build --tag ${IMG_NAME}:${TAG_IMG} --build-arg ORGANIZATION=$ORGANIZATION
 docker run  \
     --env ORGANIZATION=${ORGANIZATION} \
     --env ACCESS_TOKEN=${ACCESS_TOKEN} \
-    --name ${CONTAINER_NAME}  ${IMG_NAME} \
+    --name ${CONTAINER_NAME}  ${IMG_NAME}:${TAG_IMG} \
     -v /var/run/docker.sock:/var/run/docker.sock 
 ```
 
