@@ -23,9 +23,7 @@ cleanup() {
 trap 'remove; exit 130' INT
 trap 'remove; exit 143' TERM
 
-./run.sh "$*" &
-
-wait $!
+./run.sh "$*" & wait $!
 
 # ./svc.sh install
 # ./svc.sh start & wait $!
