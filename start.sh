@@ -8,12 +8,14 @@ REG_TOKEN=$(curl -sX POST -H "Authorization: token ${ACCESS_TOKEN}" https://api.
 
 echo "${env}"
 
-./config.sh \
-    --url https://github.com/${ORGANIZATION}/shopping-cart-1 \
-    --token ${REG_TOKEN} \
-    --work ${RUNNER_WORKDIR} \
-    --unattended \
-    --replace
+./config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
+
+# ./config.sh \
+#     --url https://github.com/${ORGANIZATION}/shopping-cart-1 \
+#     --token ${REG_TOKEN} \
+#     --work ${RUNNER_WORKDIR} \
+#     --unattended \
+#     --replace
 
 cleanup() {
     echo "Removing runner..."
