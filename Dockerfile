@@ -11,12 +11,11 @@ ENV ORGANIZATION=${ORGANIZATION}
 ENV ACCESS_TOKEN=${ACCESS_TOKEN}
 ENV REG_TOKEN=${REG_TOKEN}
 
-# USER docker
-
 WORKDIR /srv/actions-runner
 
 # update the base packages and add a non-sudo user
-RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
+RUN apt-get update -y && apt-get upgrade -y 
+# && useradd -m docker
 
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
@@ -29,9 +28,9 @@ RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2
 # VOLUME /var/run/docker.sock
 
 # install some additional dependencies
-# RUN ./bin/installdependencies.sh
-RUN chown -R docker ~docker && ./bin/installdependencies.sh
-RUN chown -R docker /srv/actions-runner
+RUN ./bin/installdependencies.sh
+# RUN chown -R docker ~docker && ./bin/installdependencies.sh
+# RUN chown -R docker /srv/actions-runner
 
 # copy over the start.sh script
 COPY start.sh ./start.sh
@@ -41,7 +40,7 @@ RUN chmod +x ./start.sh
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "docker" so all subsequent commands are run as the docker user
-USER docker
+# USER docker
 
 # set the entrypoint to the start.sh script
 ENTRYPOINT ["./start.sh"]

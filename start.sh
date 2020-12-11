@@ -15,8 +15,7 @@ cleanup() {
     ./actions-runconfig.sh remove --unattended --token ${REG_TOKEN}
 }
 
-trap 'cleanup; exit 130' INT
-trap 'cleanup; exit 143' TERM
 
-./run.sh & wait $!
+./svc.sh install
+./svc.sh start & wait $!
 
