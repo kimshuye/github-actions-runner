@@ -57,6 +57,7 @@ sudo chmod +x install-etc-2.sh
 
 ```
 export IMG_NAME=tokdev/runner
+export CONTAINER_NAME=runner
 
 export ORGANIZATION=kimshuye
 export ACCESS_TOKEN=xxx
@@ -68,4 +69,10 @@ export ACCESS_TOKEN=xxx
 
 ```
 docker build --tag ${IMG_NAME} .
+```
+
+## 
+
+```
+docker run --name ${CONTAINER_NAME} --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock --detach --env ORGANIZATION=${ORGANIZATION} --env ACCESS_TOKEN=${ACCESS_TOKEN} ${IMG_NAME}
 ```
