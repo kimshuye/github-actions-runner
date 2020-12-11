@@ -53,3 +53,19 @@ sudo chmod +x install-etc-2.sh
 ./install-etc-2.sh
 ```
 
+## Env
+
+```
+export IMG_NAME=tokdev/runner
+
+export ORGANIZATION=kimshuye
+export ACCESS_TOKEN=xxx
+```
+
+
+## Create docker image
+
+
+```
+docker build --tag ${IMG_NAME} .
+```
