@@ -28,6 +28,7 @@ RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2
 # install some additional dependencies
 # RUN ./bin/installdependencies.sh
 RUN chown -R docker ~docker && ./bin/installdependencies.sh
+RUN chown -R docker /srv/actions-runner
 
 # copy over the start.sh script
 COPY start.sh ./start.sh
