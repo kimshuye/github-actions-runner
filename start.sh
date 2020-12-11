@@ -8,7 +8,7 @@ REG_TOKEN=$REG_TOKEN
 
 echo "${env}"
 
-./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN}
+./config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
 
 cleanup() {
     echo "Removing runner..."
