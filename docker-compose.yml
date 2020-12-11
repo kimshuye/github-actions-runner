@@ -2,7 +2,7 @@ version: '3'
 
 services:
   runner:
-    image: tokdev/runner:dev0.0.1 
+    # image: tokdev/runner:dev0.0.1 
     build: .
     environment:
       - ORGANIZATION=${ORGANIZATION}
