@@ -41,13 +41,13 @@ RUN apt-get install -y curl jq build-essential libssl-dev libffi-dev python3 pyt
 
 # VOLUME /var/run/docker.sock
 
-# install some additional dependencies
-# RUN ./bin/installdependencies.sh
-RUN chown -R docker ~docker && ./bin/installdependencies.sh
-
 # cd into the user directory, download and unzip the github actions runner
 RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2.274.2/actions-runner-linux-x64-2.274.2.tar.gz \
     && tar xzf ./actions-runner-linux-x64-2.274.2.tar.gz
+
+# install some additional dependencies
+# RUN ./bin/installdependencies.sh
+RUN chown -R docker ~docker && ./bin/installdependencies.sh
 
 # copy over the start.sh script
 COPY start.sh ./start.sh
