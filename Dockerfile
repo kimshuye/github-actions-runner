@@ -8,6 +8,8 @@ ENV ORGANIZATION=$ORGANIZATION
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
 ENV REG_TOKEN=$REG_TOKEN
 
+WORKDIR /home/docker
+
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
@@ -16,7 +18,7 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 RUN apt-get install -y curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev jq
 
 # cd into the user directory, download and unzip the github actions runner
-RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
+RUN mkdir actions-runner && cd actions-runner \
     && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
@@ -28,15 +30,15 @@ VOLUME /var/run/docker.sock
 RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 
 # copy over the start.sh script
-COPY start.sh start.sh
+COPY start.sh ${WORKDIR}/actions-runner/start.sh
 
 # make the script executable
-RUN chmod +x start.sh
+RUN chmod +x ${WORKDIR}/actions-runner/start.sh
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "docker" so all subsequent commands are run as the docker user
 USER docker
 
 # # set the entrypoint to the start.sh script
-# ENTRYPOINT ["./start.sh"]
+# ENTRYPOINT ["./actions-runner/start.sh"]
 
