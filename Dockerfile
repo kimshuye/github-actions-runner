@@ -6,6 +6,7 @@ ARG RUNNER_VERSION="2.274.2"
 
 ENV ORGANIZATION=$ORGANIZATION
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
+ENV REG_TOKEN=$REG_TOKEN
 
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
