@@ -4,11 +4,11 @@ FROM ubuntu:18.04
 # set the github runner version
 ARG RUNNER_VERSION="2.274.2"
 
-# ENV ORGANIZATION=$ORGANIZATION
-# ENV ACCESS_TOKEN=$ACCESS_TOKEN
-# ENV REG_TOKEN=$REG_TOKEN
+ENV ORGANIZATION=$ORGANIZATION
+ENV ACCESS_TOKEN=$ACCESS_TOKEN
+ENV REG_TOKEN=$REG_TOKEN
 
-WORKDIR /home/docker
+WORKDIR /home/docker/actions-runner
 
 # update the base packages and add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
@@ -18,10 +18,10 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 RUN apt-get install -y curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev
 
 # cd into the user directory, download and unzip the github actions runner
-RUN curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2.274.2/actions-runner-linux-x64-2.274.2.tar.gz \
+    && tar xzf ./actions-runner-linux-x64-2.274.2.tar.gz
 
-VOLUME /var/run/docker.sock
+# VOLUME /var/run/docker.sock
 
 # install some additional dependencies
 # RUN ./bin/installdependencies.sh

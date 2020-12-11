@@ -96,3 +96,13 @@ docker run  \
     --name ${CONTAINER_NAME}  ${IMG_NAME} \
     -v /var/run/docker.sock:/var/run/docker.sock 
 ```
+
+
+## Start docker by compose
+
+```
+docker-compose up
+# or
+docker-compose up --scale runner=2 -d
+```
+
