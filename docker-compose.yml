@@ -6,6 +6,6 @@ services:
     environment:
       - ORGANIZATION=${ORGANIZATION}
       - ACCESS_TOKEN=${ACCESS_TOKEN}
-      # - REG_TOKEN=${REG_TOKEN}
-    # volumes: 
-    #   - /var/run/docker.sock:/var/run/docker.sock
+      - REG_TOKEN=${REG_TOKEN}
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
