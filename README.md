@@ -71,7 +71,8 @@ docker login --username tokdev
 ## Env
 
 ```
-export IMG_NAME=tokdev/runner:latest
+export IMG_NAME=tokdev/runner
+export TAG_IMG=dev0.0.1
 export CONTAINER_NAME=runner
 
 export ORGANIZATION=kimshuye
@@ -84,7 +85,7 @@ export REG_TOKEN=xxx
 
 
 ```
-docker build --tag ${IMG_NAME} .
+docker build --tag ${IMG_NAME}:${TAG_IMG} --build-arg ORGANIZATION=$ORGANIZATION --build-arg ACCESS_TOKEN=$ACCESS_TOKEN  . 
 ```
 
 ## Test Run runner
