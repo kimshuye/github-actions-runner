@@ -8,7 +8,7 @@ REG_TOKEN=$REG_TOKEN
 
 echo "${env}"
 
-./actions-runner/config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
+./config.sh --url https://github.com/${ORGANIZATION}/shopping-cart-1 --token ${REG_TOKEN}
 
 cleanup() {
     echo "Removing runner..."
@@ -18,5 +18,5 @@ cleanup() {
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
 
-./actions-runner/run.sh & wait $!
+./run.sh & wait $!
 
