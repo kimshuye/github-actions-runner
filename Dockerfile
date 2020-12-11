@@ -8,6 +8,8 @@ ENV ORGANIZATION=$ORGANIZATION
 ENV ACCESS_TOKEN=$ACCESS_TOKEN
 ENV REG_TOKEN=$REG_TOKEN
 
+USER docker
+
 WORKDIR /home/docker/actions-runner
 
 # update the base packages and add a non-sudo user
@@ -26,7 +28,7 @@ RUN curl -O -L curl -O -L https://github.com/actions/runner/releases/download/v2
 # install some additional dependencies
 # RUN ./bin/installdependencies.sh
 
-RUN chown -R docker ~docker && ./bin/installdependencies.sh
+RUN chown -R docker ~docker && sudo ./bin/installdependencies.sh
 
 # copy over the start.sh script
 COPY start.sh ./start.sh
