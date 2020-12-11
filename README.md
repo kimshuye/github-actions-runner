@@ -41,5 +41,15 @@ chmod +x "$HOME/bin/docker-machine.exe"
 ```
 
 
+## Add script install docker
 
+```
+sudo chmod +x install-etc-2.sh
+```
+
+## Run install-etc-2.sh
+
+```
+./install-etc-2.sh
+```
 
