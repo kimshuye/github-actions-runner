@@ -2,10 +2,11 @@
 
 ORGANIZATION=$ORGANIZATION
 ACCESS_TOKEN=$ACCESS_TOKEN
+REG_TOKEN=$REG_TOKEN
 
 # REG_TOKEN=$(curl -sX POST -H "Authorization: token ${ACCESS_TOKEN}" https://api.github.com/orgs/${ORGANIZATION}/actions/runners/registration-token | jq .token --raw-output)
 
-cd /home/docker/actions-runner
+echo env
 
 ./config.sh --url https://github.com/${ORGANIZATION} --token ${REG_TOKEN}
 
