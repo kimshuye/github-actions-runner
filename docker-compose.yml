@@ -2,8 +2,10 @@ version: '3'
 
 services:
   runner:
-    # image: tokdev/runner:dev0.0.1 
-    build: .
+    # image: tokdev/runner:dev0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - ORGANIZATION=${ORGANIZATION}
       - ACCESS_TOKEN=${ACCESS_TOKEN}
